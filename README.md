@@ -1,6 +1,6 @@
-# Scotiabank Booking (scotiabank-booking)
+# Creasys Workspaces Booking (creasys-workspaces-booking)
 
-Un proyecto para agendar horas con un ejecutivo de cuentas para banco Scotiabank
+Un proyecto para agendar horas en espacios de trabajo.
 
 ## Install the dependencies
 ```bash

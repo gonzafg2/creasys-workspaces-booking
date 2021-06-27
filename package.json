@@ -1,8 +1,8 @@
 {
-  "name": "creasys-booking",
+  "name": "creasys-workspaces-booking",
   "version": "0.0.5",
-  "description": "Un proyecto para agendar horas con un ejecutivo de cuentas para banco Creasys",
-  "productName": "Creasys Booking",
+  "description": "Un proyecto para agendar horas en espacios de trabajo.",
+  "productName": "Creasys Workspaces Booking",
   "author": "Gonzalo Fleming",
   "private": true,
   "scripts": {

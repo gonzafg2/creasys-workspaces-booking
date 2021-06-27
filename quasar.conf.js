@@ -110,9 +110,9 @@ module.exports = function(/* ctx */) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `Creasys Booking`,
-        short_name: `Creasys Booking`,
-        description: `Un proyecto para agendar horas con un ejecutivo de cuentas para un banco`,
+        name: `Creasys Workspaces Booking`,
+        short_name: `Creasys Workspaces Booking`,
+        description: `Un proyecto para agendar horas en espacios de trabajo`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
@@ -175,7 +175,7 @@ module.exports = function(/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "creasys-booking"
+        appId: "creasys-workspaces-booking"
       },
 
       // More info: https://v1.quasar.dev/quasar-cli/developing-electron-apps/node-integration
