@@ -297,21 +297,25 @@ export default {
     margin: 5px 0 0;
   }
   &__button {
-    max-width: 343px;
     width: 100%;
-    margin: 32px 0 54px;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    letter-spacing: 0.42px;
     background-color: #164b7d;
     color: white;
     border-radius: 14px;
     height: 50px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-transform: uppercase;
   }
   &__busqueda {
     margin-bottom: 10px;

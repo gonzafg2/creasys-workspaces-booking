@@ -1,7 +1,6 @@
 <template>
   <div class="banda">
     <div class="banda__label">{{ label }}</div>
-    <q-icon name="event" size="sm" />
   </div>
 </template>
 
@@ -19,19 +18,18 @@ export default {
 
 <style lang="scss">
 .banda {
-  color: white;
-  background-color: #164b7d;
-  padding: 0 20px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  color: #050505;
+  display: flex;
   height: 45px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 20px;
   width: 100%;
-  margin-bottom: 29px;
   &__label {
-    font-weight: 900;
-    font-size: 19px;
-    line-height: 179%;
+    line-height: 28px;
+    font-size: 24px;
+    font-weight: 700;
   }
 }
 </style>

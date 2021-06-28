@@ -4,15 +4,10 @@
 
     <div class="busqueda">
       <q-img
-        style="width: 249px; height: 175px;"
+        style="width: 165px; height: 141px;"
         class="busqueda__sucursal"
-        src="~/assets/suc.png"
+        src="~/assets/chatting.png"
       ></q-img>
-
-      <h2 class="busqueda__titulo">
-        Selecciona tu Sucursal <br />
-        del Banco
-      </h2>
 
       <q-select
         class="busqueda__select"
@@ -46,7 +41,7 @@
       <q-btn
         class="busqueda__button"
         clearable
-        label="VER DISPONIBILIDAD"
+        label="seleccione sucursal"
         push
         style="color: white"
         :disable="!verDisponibilidad"
@@ -117,36 +112,60 @@ export default {
   align-items: center;
   padding: 0 25px;
   &__sucursal {
-    margin-bottom: 0;
-  }
-  &__titulo {
-    font-weight: 900;
-    font-size: 29px;
-    line-height: 117%;
-    text-align: center;
-    color: #000000;
+    margin-bottom: 48px;
   }
   &__select {
     width: 100%;
     max-width: 315px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    @media screen and (min-width: 360px) {
+      margin-bottom: 38px;
+    }
+    .q-field__label {
+      color: #000000;
+    }
   }
   &__button {
-    max-width: 343px;
     width: 100%;
-    margin: 32px 0 54px;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 20px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    letter-spacing: 0.42px;
     background-color: #164b7d;
-    color: white;
-    border-radius: 14px;
+    border-radius: 0;
     height: 50px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+  .q-field--disabled {
+    opacity: 0.6;
+  }
+}
+</style>
+<style lang="scss">
+.busqueda {
+  &__select {
+    .q-field__label {
+      color: #050505;
+      font-weight: 600;
+      line-height: 16px;
+      padding-bottom: 11px;
+    }
+    .q-field__native {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #7c87a5;
+    }
   }
 }
 </style>

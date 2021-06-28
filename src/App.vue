@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss">
 #q-app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 input.q-field__native {
   padding-left: 28px;
