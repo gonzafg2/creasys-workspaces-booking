@@ -1,0 +1,12 @@
+{
+  "name": "creasys-workspaces-booking",
+  "version": "0.0.5",
+  "description": "Un proyecto para agendar horas en espacios de trabajo.",
+  "author": "Gonzalo Fleming",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "2.4.7",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "appId": "creasys.workspaces.booking",
+  "appName": "Creasys Workspaces Booking",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}
