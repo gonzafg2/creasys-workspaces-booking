@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="creasys.booking" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Creasys Booking</name>
-    <description>Un proyecto para agendar horas con un ejecutivo de cuentas para banco Creasys</description>
+<widget id="creasys.workspaces.booking" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Creasys Workspaces Booking</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
@@ -71,6 +73,5 @@
         <splash src="res/screen/ios/Default@2x~ipad~anyany.png" />
         <splash src="res/screen/ios/Default@2x~ipad~comany.png" />
     </platform>
-    <allow-navigation href="about:*" />
     <preference name="SplashMaintainAspectRatio" value="true" />
 </widget>

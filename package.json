@@ -9,6 +9,10 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "hosting": "firebase deploy --only hosting",
+    "export:androidSDK": "export ANDROID_HOME='$HOME/Android/Sdk'",
+    "export:androidSDKRoot": "export ANDROID_SDK_ROOT='$HOME/Android/Sdk'",
+    "export:androidSDKRootSet": "set PATH $PATH:$ANDROID_SDK_ROOT/platform-tools",
+    "icon:gen": "icongenie generate -m cordova -i icon.png",
     "deploy": "quasar build && yarn hosting",
     "cordova:dev": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
     "cordova:build": "quasar build -m cordova -T android -- --buildConfig=\"../build.cordova.json\""
