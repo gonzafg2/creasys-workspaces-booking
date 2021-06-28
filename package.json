@@ -9,12 +9,12 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "hosting": "firebase deploy --only hosting",
-    "export:androidSDK": "export ANDROID_HOME='$HOME/Android/Sdk'",
-    "export:androidSDKRoot": "export ANDROID_SDK_ROOT='$HOME/Android/Sdk'",
+    "export:androidSDK": "export ANDROID_HOME=\"$HOME/Android/Sdk\"",
+    "export:androidSDKRoot": "export ANDROID_SDK_ROOT=\"$HOME/Android/Sdk\"",
     "export:androidSDKRootSet": "set PATH $PATH:$ANDROID_SDK_ROOT/platform-tools",
     "icon:gen": "icongenie generate -m cordova -i icon.png",
     "deploy": "quasar build && yarn hosting",
-    "cordova:dev": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
+    "cordova:dev": "quasar dev -m cordova -T android --ide -- --buildConfig=\"../build.cordova.json\"",
     "cordova:build": "quasar build -m cordova -T android -- --buildConfig=\"../build.cordova.json\""
   },
   "dependencies": {
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
+    "@vue/devtools": "^5.3.4",
     "babel-eslint": "^10.0.1",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
