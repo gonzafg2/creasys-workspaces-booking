@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banda label="Reserva tu atención" />
+    <Banda label="Búsqueda Sucursal" />
 
     <div class="busqueda">
       <q-img
@@ -57,12 +57,6 @@ import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Busqueda",
-  data() {
-    return {
-      model: null,
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
-    };
-  },
   components: {
     Banda
   },
