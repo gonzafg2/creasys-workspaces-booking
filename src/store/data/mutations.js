@@ -29,10 +29,55 @@ export function setearArea(state, payload) {
 export function setearTipoCal(state, payload) {
   state.tipoCalendario = payload;
 }
+export function setearFecha(state, payload) {
+  state.fechaSeleccionada = payload;
+}
 
 export function limpiarReserva(state) {
   state.region = null;
   state.comuna = null;
   state.sucursal = null;
   state.verDisponibilidad = false;
+}
+export function setearDiaActual(state, payload) {
+  const now = payload;
+  const hoy = state.hoy;
+  const mes = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre"
+  ];
+  const dia = [
+    "domingo",
+    "lunes",
+    "martes",
+    "miércoles",
+    "jueves",
+    "viernes",
+    "sábado"
+  ];
+  let day = now.getDate();
+  const diaNom = dia[now.getDay()];
+  if (day >= 1 && day <= 9) day = "0" + day;
+
+  let month = now.getMonth();
+  const mesNom = mes[month];
+  if (month >= 1 && month <= 9) month = "0" + (month + 1);
+
+  hoy.año = now.getFullYear().toString();
+  hoy.mesNum = month;
+  hoy.mesNom = mesNom;
+  hoy.diaNum = day.toString();
+  hoy.diaNom = diaNom;
+
+  state.fechaActual = `${hoy.año}/${hoy.mesNum}/${hoy.diaNum}`;
 }

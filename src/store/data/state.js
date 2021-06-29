@@ -8,6 +8,10 @@ export default function() {
     departamento: null,
     area: null,
     verDisponibilidad: false,
-    tipoCalendario: "mensual"
+    verUbicacion: false,
+    tipoCalendario: "diario",
+    hoy: {},
+    fechaActual: null,
+    fechaSeleccionada: null
   };
 }

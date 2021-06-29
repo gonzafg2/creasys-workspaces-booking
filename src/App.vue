@@ -10,10 +10,11 @@ import { mapActions } from "vuex";
 export default {
   name: "App",
   methods: {
-    ...mapActions("data", ["getRegionesComuna"])
+    ...mapActions("data", ["getRegionesComuna", "getDiaActual"])
   },
   created () {
     this.getRegionesComuna();
+    this.getDiaActual();
   },
 };
 </script>

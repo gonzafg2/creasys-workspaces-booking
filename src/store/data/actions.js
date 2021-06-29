@@ -10,3 +10,8 @@ export async function getRegionesComuna({ commit }) {
     console.log(error);
   }
 }
+
+export async function getDiaActual({ commit }) {
+  const now = new Date();
+  commit("setearDiaActual", now);
+}

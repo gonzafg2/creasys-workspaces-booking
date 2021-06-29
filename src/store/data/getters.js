@@ -88,6 +88,7 @@ export function departamentos(state) {
   if (!departamento) return [];
   return departamento;
 }
+
 export function areas(state) {
   const regiones = state.regionesComuna;
   const departamento = state.departamento;
@@ -103,6 +104,28 @@ export function areas(state) {
     .filter((v, i, a) => a.findIndex(t => t.area === v.area) === i);
   if (!area) return [];
   return area;
+}
+
+export function puestos(state) {
+  const regiones = state.regionesComuna;
+  const sucursal = state.sucursal;
+  const departamento = state.departamento;
+  const area = state.area;
+  if (!regiones || !sucursal || !departamento || !area) return [];
+
+  const puesto = regiones
+    .filter(fil => fil.id_sucursal === sucursal.id)
+    .filter(fil => fil.departamento === departamento.departamento)
+    .filter(fil => fil.area === area.area)
+    .map(obj => {
+      return {
+        id: obj.id_puesto,
+        puesto: obj.puesto
+      };
+    })
+    .filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
+  if (!puesto) return [];
+  return puesto;
 }
 
 export function verDisponibilidad(state) {
