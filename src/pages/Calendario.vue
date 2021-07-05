@@ -20,11 +20,12 @@
 
       <q-date
         class="calendario__cal"
-        v-model="fecha"
         color="deep-purple-4"
-        :options="hoyActual"
         flat
+        :events="diasSeleccionados"
         minimal
+        v-model="fecha"
+        :options="hoyActual"
       />
     </div>
 
@@ -32,7 +33,6 @@
       <p v-if="!hoySeleccionado" class="calendario__mes">
         {{ hoy.diaNum }} <span class="text-lowercase">de</span> {{ hoy.mesNom }}
       </p>
-
       <p v-else class="calendario__mes">{{ hoySeleccionado }}</p>
 
       <q-list
@@ -47,12 +47,14 @@
           :label="`Puesto ${puesto.puesto}`"
         >
           <div
-            @click="checkear(puesto.id, horario.id)"
+            @click="checkear(puesto.id, horario.hora, fecha)"
             class="calendario__puesto"
             :class="{
-              'calendario__puesto--check':
-                puesto.id === puestoSeleccionado.id &&
-                horario.id === puestoSeleccionado.hora
+              'calendario__puesto--check': select(
+                puesto.id,
+                horario.hora,
+                fecha
+              )
             }"
             v-for="horario in horarios"
             :key="horario.id"
@@ -60,14 +62,12 @@
             <p class="calendario__puesto-nombre">
               <q-icon
                 :name="
-                  puesto.id === puestoSeleccionado.id &&
-                  horario.id === puestoSeleccionado.hora
+                  select(puesto.id, horario.hora, fecha)
                     ? 'check_circle'
                     : 'check_circle_outline'
                 "
                 :class="
-                  puesto.id === puestoSeleccionado.id &&
-                  horario.id === puestoSeleccionado.hora
+                  select(puesto.id, horario.hora, fecha)
                     ? 'calendario__check'
                     : 'calendario__uncheck'
                 "
@@ -84,7 +84,69 @@
         </q-expansion-item>
       </q-list>
 
-      <button class="calendario__agregar">+</button>
+      <button
+        @click="agregarSeleccion"
+        class="calendario__agregar"
+        :disabled="puestosSeleccionados && puestosSeleccionados.length === 0"
+      >
+        +
+      </button>
+
+      <q-dialog v-model="confirm" persistent>
+        <q-card>
+          <q-card-section class="row items-center">
+            <span class="q-ml-sm q-mb-md text-bold"
+              >¿Estás seguro de solicitar tu selección?</span
+            >
+
+            <p
+              class="q-ml-md q-mb-sm"
+              v-for="puesto in puestosSeleccionados"
+              :key="puesto.idPuesto"
+            >
+              - Fecha: {{ puesto.fecha }} | Hora: {{ puesto.hora }}
+            </p>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat label="Cancelar" color="negative" v-close-popup />
+            <q-btn
+              flat
+              label="Aceptar"
+              color="primary"
+              @click="alert = true"
+              v-close-popup
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+
+      <q-dialog v-model="alert">
+        <q-card>
+          <q-card-section>
+            <p class="q-ml-sm q-mb-md text-bold">
+              Se ha solicitado satisfactoriamente lo siguiente:
+            </p>
+            <p
+              class="q-ml-md q-mb-sm"
+              v-for="puesto in puestosSeleccionados"
+              :key="puesto.idPuesto"
+            >
+              - Fecha: {{ puesto.fecha }} | Hora: {{ puesto.hora }}
+            </p>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn
+              @click="salir"
+              flat
+              label="OK"
+              color="primary"
+              v-close-popup
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
     </div>
   </div>
 </template>
@@ -97,10 +159,7 @@ export default Vue.extend({
   name: "Calendario",
   data() {
     return {
-      puestoSeleccionado: {
-        id: null,
-        hora: null
-      },
+      puestosSeleccionados: [],
       horarios: [
         {
           id: 0,
@@ -134,7 +193,9 @@ export default Vue.extend({
           id: 7,
           hora: "17:00"
         }
-      ]
+      ],
+      confirm: false,
+      alert: false
     };
   },
   computed: {
@@ -153,22 +214,28 @@ export default Vue.extend({
       set: function(val) {
         this.setearFecha(val);
       }
+    },
+    diasSeleccionados() {
+      return this.puestosSeleccionados.map(m => m.fecha) || [];
     }
   },
   methods: {
-    checkear(id, hora) {
-      if (
-        !this.puestoSeleccionado ||
-        !this.puestoSeleccionado.id ||
-        this.puestoSeleccionado.id !== id ||
-        this.puestoSeleccionado.hora !== hora
-      ) {
-        this.puestoSeleccionado.id = id;
-        this.puestoSeleccionado.hora = hora;
+    checkear(id, hora, fecha) {
+      const finder = this.puestosSeleccionados.find(
+        f => f.hora === hora && f.fecha === fecha && f.idPuesto === id
+      );
+      if (finder) {
+        const index = this.puestosSeleccionados.indexOf(finder);
+        this.puestosSeleccionados.splice(index, 1);
         return;
       }
-      this.puestoSeleccionado.id = null;
-      this.puestoSeleccionado.hora = null;
+      this.puestosSeleccionados.push({ idPuesto: id, hora, fecha });
+    },
+    select(id, hora, fecha) {
+      const selected = this.puestosSeleccionados.find(
+        f => f.idPuesto === id && f.fecha === fecha && f.hora === hora
+      );
+      return selected ? true : false;
     },
     hoyActual(date) {
       return date >= this.fechaActual;
@@ -176,7 +243,14 @@ export default Vue.extend({
     selectTipoCal(tipo) {
       this.setearTipoCal(tipo);
     },
-    ...mapMutations("data", ["setearTipoCal", "setearFecha"])
+    ...mapMutations("data", ["setearTipoCal", "setearFecha"]),
+    agregarSeleccion() {
+      this.confirm = true;
+    },
+    salir() {
+      localStorage.clear();
+      this.$router.push("/");
+    }
   }
 });
 </script>
