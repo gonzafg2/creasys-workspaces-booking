@@ -1,3 +1,27 @@
+const mes = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre"
+];
+const dia = [
+  "domingo",
+  "lunes",
+  "martes",
+  "miércoles",
+  "jueves",
+  "viernes",
+  "sábado"
+];
+
 export function guardarRegionesComuna(state, payload) {
   state.regionesComuna = payload;
 }
@@ -30,7 +54,12 @@ export function setearTipoCal(state, payload) {
   state.tipoCalendario = payload;
 }
 export function setearFecha(state, payload) {
+  if (!payload) return;
   state.fechaSeleccionada = payload;
+  const day = payload.slice(8, 10).toString();
+  const mesNum = Number(payload.slice(5, 7)).toString();
+  const month = mes[mesNum - 1];
+  state.hoySeleccionado = `${day} de ${month}`
 }
 
 export function limpiarReserva(state) {
@@ -42,31 +71,11 @@ export function limpiarReserva(state) {
 export function setearDiaActual(state, payload) {
   const now = payload;
   const hoy = state.hoy;
-  const mes = [
-    "enero",
-    "febrero",
-    "marzo",
-    "abril",
-    "mayo",
-    "junio",
-    "julio",
-    "agosto",
-    "septiembre",
-    "octubre",
-    "noviembre",
-    "diciembre"
-  ];
-  const dia = [
-    "domingo",
-    "lunes",
-    "martes",
-    "miércoles",
-    "jueves",
-    "viernes",
-    "sábado"
-  ];
+
   let day = now.getDate();
+
   const diaNom = dia[now.getDay()];
+
   if (day >= 1 && day <= 9) day = "0" + day;
 
   let month = now.getMonth();

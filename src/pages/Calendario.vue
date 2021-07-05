@@ -29,9 +29,11 @@
     </div>
 
     <div class="calendario__agenda-mensual">
-      <p class="calendario__mes">
+      <p v-if="!hoySeleccionado" class="calendario__mes">
         {{ hoy.diaNum }} <span class="text-lowercase">de</span> {{ hoy.mesNom }}
       </p>
+
+      <p v-else class="calendario__mes">{{ hoySeleccionado }}</p>
 
       <q-list
         dark
@@ -140,12 +142,13 @@ export default Vue.extend({
       "tipoCalendario",
       "fechaActual",
       "fechaSeleccionada",
-      "hoy"
+      "hoy",
+      "hoySeleccionado"
     ]),
     ...mapGetters("data", ["puestos"]),
     fecha: {
       get: function() {
-        return this.fechaSeleccionada;
+        return this.fechaSeleccionada || this.fechaActual;
       },
       set: function(val) {
         this.setearFecha(val);
@@ -263,7 +266,6 @@ export default Vue.extend({
     line-height: 28px;
     font-size: 24px;
     font-weight: 700;
-    text-transform: capitalize;
   }
   &__puesto {
     width: 100%;

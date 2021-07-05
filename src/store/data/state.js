@@ -11,6 +11,7 @@ export default function() {
     verUbicacion: false,
     tipoCalendario: "diario",
     hoy: {},
+    hoySeleccionado: null,
     fechaActual: null,
     fechaSeleccionada: null
   };

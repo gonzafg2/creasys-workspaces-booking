@@ -2,7 +2,7 @@ import { Notify } from "quasar";
 
 export async function userLogin({ commit }, payload) {
   const rut = payload;
-  if (rut === "17238755-1") {
+  if (rut) {
     commit("guardarLogin", rut);
     Notify.create({
       color: "blue-4",
