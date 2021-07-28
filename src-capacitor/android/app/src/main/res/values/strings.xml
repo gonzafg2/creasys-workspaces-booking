@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Creasys Workspaces Booking</string>
-    <string name="title_activity_main">Creasys Workspaces Booking</string>
-    <string name="package_name">creasys.workspaces.booking</string>
-    <string name="custom_url_scheme">creasys.workspaces.booking</string>
-</resources>
